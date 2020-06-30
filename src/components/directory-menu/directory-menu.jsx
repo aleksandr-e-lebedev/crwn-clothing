@@ -2,6 +2,8 @@ import React from 'react';
 
 import MenuItem from '../menu-item/menu-item';
 
+import './directory-menu.scss';
+
 class DirectoryMenu extends React.Component {
   constructor(props) {
     super(props);
