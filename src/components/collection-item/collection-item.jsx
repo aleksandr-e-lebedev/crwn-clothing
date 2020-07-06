@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './collection-item.scss';
+
 const CollectionItem = ({ name, imageUrl, price }) => (
   <div className="collection-item">
     <div
