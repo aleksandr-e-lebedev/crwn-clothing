@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './custom-button.scss';
+
 const CustomButton = ({ children, type }) => (
   <button className="custom-button" type={type}>
     {children}
