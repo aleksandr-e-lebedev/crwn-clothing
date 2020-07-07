@@ -10,7 +10,7 @@ const CustomButton = ({ children, type }) => (
 );
 
 CustomButton.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']).isRequired,
 };
 
