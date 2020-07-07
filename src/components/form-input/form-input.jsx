@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './form-input.scss';
+
 const FormInput = ({ type, name, value, required, handleChange, label }) => (
   <div className="group">
     <input
