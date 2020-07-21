@@ -25,4 +25,14 @@
     background-color: white;
     color: black;
   }
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+
+    &:hover {
+      border: none;
+      background-color: #357ae8;
+    }
+  }
 }
