@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
@@ -9,34 +12,28 @@ import Header from './components/header/header';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { setCurrentUser } from './redux/user/user.actions';
+
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentUser: null,
-    };
-  }
-
   componentDidMount() {
+    // eslint-disable-next-line no-shadow
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
           });
         });
       } else {
-        this.setState({
-          currentUser: userAuth,
-        });
+        setCurrentUser(userAuth);
       }
     });
   }
@@ -46,11 +43,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.state;
-
     return (
       <div className="App">
-        <Header {...{ currentUser }} />
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
@@ -61,4 +56,29 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  currentUser: PropTypes.shape({
+    id: PropTypes.string,
+    createdAt: PropTypes.shape({
+      seconds: PropTypes.number,
+      nanoseconds: PropTypes.number,
+    }),
+    displayName: PropTypes.string,
+    email: PropTypes.string,
+  }),
+  setCurrentUser: PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+  currentUser: null,
+};
+
+const mapState = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatch = {
+  setCurrentUser,
+};
+
+export default connect(mapState, mapDispatch)(App);
