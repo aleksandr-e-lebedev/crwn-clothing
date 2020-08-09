@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
+import CheckoutPage from './pages/checkout/checkout';
 
 import Header from './components/header/header';
 
@@ -58,6 +59,7 @@ class App extends React.Component {
               currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
             }
           />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
