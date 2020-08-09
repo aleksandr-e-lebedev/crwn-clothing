@@ -3,9 +3,17 @@ import PropTypes from 'prop-types';
 
 import './custom-button.scss';
 
-const CustomButton = ({ children, type, handleClick, isGoogleSignIn }) => (
+const CustomButton = ({
+  children,
+  type,
+  handleClick,
+  isGoogleSignIn,
+  inverted,
+}) => (
   <button
-    className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+    className={`${isGoogleSignIn ? 'google-sign-in' : ''} ${
+      inverted ? 'inverted' : ''
+    } custom-button`}
     type={type}
     onClick={handleClick}
   >
@@ -18,11 +26,13 @@ CustomButton.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']).isRequired,
   handleClick: PropTypes.func,
   isGoogleSignIn: PropTypes.bool,
+  inverted: PropTypes.bool,
 };
 
 CustomButton.defaultProps = {
   handleClick: () => {},
   isGoogleSignIn: false,
+  inverted: false,
 };
 
 export default CustomButton;
