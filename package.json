@@ -1,7 +1,23 @@
 {
   "name": "crwn-clothing",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Website created with React, Redux and Firebase",
+  "main": "src/index.js",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksandr-e-lebedev/crwn-clothing.git"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "Firebase"
+  ],
+  "author": "Aleksandr Lebedev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksandr-e-lebedev/crwn-clothing/issues"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
