@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CRWN Clothing
 
-## Available Scripts
+Версия: v1.0.0
 
-In the project directory, you can run:
+[Демо](https://crwn-webapp.herokuapp.com/)
+
+Хостинг реализован с использованием [Heroku](https://www.heroku.com/). Дождитесь загрузки приложения.
+
+## Описание
+
+Данный проект реализован в рамках учебного курса [Complete React Developer in 2020 (w/ Redux, Hooks, GraphQL)](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/) на [Udemy](https://www.udemy.com/) для приобретения навыка создания современных веб-приложений с использованием таких технологий, как React, Router, Redux, Saga, Thunk, Context API, GraphQL, Apollo, Hooks, React Suspense + React Lazy, Styled-Components.
+
+Проект представляет собой онлайн-магазин модной одежды и обуви.
+
+## Используемые технологии
+
+HTML, CSS, Sass, JavaScript (ES6+), React, Router, Redux, Firebase, Stripe, Git, Webpack
+
+## Функциональные возможности
+
+1. регистрация и авторизация пользователя (в т.ч. с помощью Google):
+   - аутентификация реализована с помощью Firebase Auth;
+   - данные пользователя хранятся в Firebase Firestore;
+   - если пользователь не вышел из учётной записи и повторно заходит на страницу приложения, повторная авторизация не требуется: данные загружаются из Firebase;
+   - редирект авторизованного пользователя на главную страницу при обращении к странице авторизации по прямой ссылке;
+2. навигация по каталогу товаров (реализована вложенная маршрутизация):
+   - из главной страницы можно сразу перейти на страницу конкретной коллекции и ознакомиться со всеми её товарами;
+   - из навигационного меню можно перейти на страницу предварительного просмотра всех коллекций, где для каждой коллекции рендерится по 4 товара;
+3. корзина покупателя:
+   - в навигационном меню рендерится иконка корзины, отображающая текущее количество добавленных товаров;
+   - нажатие на иконку корзины отобразит подробную информацию о каждом добавленном товаре (фото, наименование, количество и цену), а также кнопку перехода на страницу оформления заказа;
+   - добавить товар в корзину можно со страницы конкретной коллекции, со страницы предварительного просмотра всех коллекций, со страницы оформления заказа;
+   - удалить товар из корзины можно на странице оформления заказа;
+   - данные о добавленных в корзину товарах сохраняются в localStorage (используется [Redux Persist](https://github.com/rt2zz/redux-persist));
+4. оформление заказа:
+   - на странице оформления заказа отображается подробная информация для каждого добавленного в корзину товара (фото, наименование, количество и цена), кнопки добавления и удаления одной единицы конкретного товара, кнопка удаления всех единиц конкретного товара из корзины, суммарная стоимость заказа, а также кнопка оплаты заказа;
+   - обработка онлайн-платежа реализована с помощью Stripe.
+
+## Оптимизация производительности
+
+Для повышения производительности рендеринга компонентов используется библиотека [Reselect](https://github.com/reduxjs/reselect).
+
+## Тестирование
+
+Для типизации пропсов компонентов используется библиотека [PropTypes](https://github.com/facebook/prop-types).
+
+[Нормализованы](https://redux.js.org/tutorials/essentials/part-6-performance-normalization#normalizing-data) данные, используемые для рендеринга страницы конкретной коллекции товаров.
+
+## Как развернуть проект
+
+Клонируйте репозиторий:
+
+`git clone https://github.com/aleksandr-e-lebedev/crwn-clothing.git`
+
+Для установки необходимых пакетов выполните:
+
+`npm install`
+
+## Доступные скрипты
+
+Находясь в директории проекта, вы можете выполнить:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Запускает приложение в режиме разработки.<br />
+Для просмотра в браузере перейдите по адресу [http://localhost:3000](http://localhost:3000).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Если вы сделаете какие-либо изменения в коде, страница будет перезагружена.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Запускает тестирование приложения.<br />
+На текущий момент тестирование не реализовано.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Собирает приложение для продакшена в папку `build`.<br />
+Сборка минимизирована и оптимизирована для лучшей производительности, а имена файлов содержат хэши.<br />
+Приложение готово для деплоя.<br />
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Примечание: операцию `eject` нельзя отменить!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Если вас не устраивает инструмент сборки и варианты конфигурации, вы в любое время можете «извлечь» конфигурацию.<br />
+Скрипт скопирует все файлы конфигурации, а также такие зависимости, как webpack, Babel, ESLint и т.д., прямо в ваш проект, чтобы вы имели полный контроль над ними.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `npm run lint`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Запускает ESLint.

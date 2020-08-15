@@ -1,0 +1,8 @@
+# Dependency directory
+node_modules/
+
+# Production directory
+build/
+
+# Service worker
+src/serviceWorker.js
