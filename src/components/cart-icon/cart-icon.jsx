@@ -6,16 +6,18 @@ import PropTypes from 'prop-types';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
-
-import './cart-icon.scss';
+import {
+  CartIconContainer,
+  ShoppingIcon,
+  ItemCountContainer,
+} from './cart-icon.styles';
 
 // eslint-disable-next-line no-shadow
 const CartIcon = ({ itemCount, toggleCartHidden }) => (
-  <div className="cart-icon" onClick={toggleCartHidden}>
-    <ShoppingIcon className="shopping-icon" />
-    <span className="item-count">{itemCount}</span>
-  </div>
+  <CartIconContainer onClick={toggleCartHidden}>
+    <ShoppingIcon />
+    <ItemCountContainer>{itemCount}</ItemCountContainer>
+  </CartIconContainer>
 );
 
 CartIcon.propTypes = {
