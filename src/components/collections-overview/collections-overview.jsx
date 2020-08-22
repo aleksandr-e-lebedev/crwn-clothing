@@ -11,8 +11,8 @@ import { CollectionsOverviewContainer } from './collections-overview.styles';
 
 const CollectionsOverview = ({ collections }) => (
   <CollectionsOverviewContainer>
-    {collections.map(({ id, title, items }) => (
-      <CollectionPreview key={id} {...{ title, items }} />
+    {collections.map(({ id, title, items, routeName }) => (
+      <CollectionPreview key={id} {...{ title, items, routeName }} />
     ))}
   </CollectionsOverviewContainer>
 );
@@ -20,7 +20,7 @@ const CollectionsOverview = ({ collections }) => (
 CollectionsOverview.propTypes = {
   collections: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       title: PropTypes.string,
       routeName: PropTypes.string,
       items: PropTypes.arrayOf(
