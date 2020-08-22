@@ -48,3 +48,36 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   // eslint-disable-next-line consistent-return
   return userRef;
 };
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectstoAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+
+  objectstoAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return batch.commit();
+};
+
+export const convertCollectionsShapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items,
+    };
+  });
+
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
+};
