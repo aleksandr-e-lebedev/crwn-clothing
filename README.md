@@ -40,11 +40,11 @@ HTML, CSS, JavaScript (ES6+), React, Router, Redux, styled-components, Firebase,
 
 Для повышения производительности рендеринга компонентов используется библиотека [Reselect](https://github.com/reduxjs/reselect).
 
+[Нормализованы](https://redux.js.org/tutorials/essentials/part-6-performance-normalization#normalizing-data) данные, используемые для рендеринга страницы конкретной коллекции товаров.
+
 ## Тестирование
 
 Для типизации пропсов компонентов используется библиотека [PropTypes](https://github.com/facebook/prop-types).
-
-[Нормализованы](https://redux.js.org/tutorials/essentials/part-6-performance-normalization#normalizing-data) данные, используемые для рендеринга страницы конкретной коллекции товаров.
 
 ## Как развернуть проект
 
