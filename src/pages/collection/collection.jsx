@@ -29,7 +29,7 @@ const CollectionPage = ({ collection }) => {
 
 CollectionPage.propTypes = {
   collection: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     routeName: PropTypes.string,
     items: PropTypes.arrayOf(
