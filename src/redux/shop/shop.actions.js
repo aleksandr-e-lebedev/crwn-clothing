@@ -1,7 +1,35 @@
 import ShopActionTypes from './shop.types';
 
-// eslint-disable-next-line import/prefer-default-export
-export const updateCollections = (collectionsMap) => ({
-  type: ShopActionTypes.UPDATE_COLLECTIONS,
+import {
+  firestore,
+  convertCollectionsShapshotToMap,
+} from '../../firebase/firebase.utils';
+
+export const fetchCollectionsStart = () => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_START,
+});
+
+export const fetchCollectionsSuccess = (collectionsMap) => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_SUCCESS,
   payload: collectionsMap,
 });
+
+export const fetchCollectionsFailure = (errorMessage) => ({
+  type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
+  payload: errorMessage,
+});
+
+export const fetchCollectionsStartAsync = () => async (dispatch) => {
+  const collectionRef = firestore.collection('collections');
+
+  dispatch(fetchCollectionsStart());
+
+  try {
+    const snapshot = await collectionRef.get();
+    const collectionsMap = convertCollectionsShapshotToMap(snapshot);
+
+    dispatch(fetchCollectionsSuccess(collectionsMap));
+  } catch (error) {
+    dispatch(fetchCollectionsFailure(error.message));
+  }
+};
