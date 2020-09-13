@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
 import CollectionPageContainer from '../collection/collection.container';
 
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 class ShopPage extends React.Component {
   componentDidMount() {
     // eslint-disable-next-line no-shadow
-    const { fetchCollectionsStartAsync } = this.props;
+    const { fetchCollectionsStart } = this.props;
 
-    fetchCollectionsStartAsync();
+    fetchCollectionsStart();
   }
 
   render() {
@@ -36,14 +36,14 @@ class ShopPage extends React.Component {
 }
 
 ShopPage.propTypes = {
-  fetchCollectionsStartAsync: PropTypes.func.isRequired,
+  fetchCollectionsStart: PropTypes.func.isRequired,
   match: PropTypes.shape({
     path: PropTypes.string,
   }).isRequired,
 };
 
 const mapDispatch = {
-  fetchCollectionsStartAsync,
+  fetchCollectionsStart,
 };
 
 export default connect(null, mapDispatch)(ShopPage);
