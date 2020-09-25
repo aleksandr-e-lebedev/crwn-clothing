@@ -14,7 +14,7 @@
 
 ## Используемые технологии
 
-HTML, CSS, JavaScript (ES6+), React, React Router, Redux, Redux Saga, styled-components, Firebase, Stripe, Git, Webpack
+HTML, CSS, JavaScript (ES6+), React, React Hooks, React Router, Redux, Redux Saga, styled-components, Firebase, Stripe, Git, Webpack
 
 ## Функциональные возможности
 
