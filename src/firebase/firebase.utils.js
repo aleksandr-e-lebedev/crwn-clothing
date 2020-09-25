@@ -44,7 +44,7 @@ export const getUserProfileReference = async (userAuth, additionalData) => {
     }
   };
 
-  if (!userSnapshot.exists) createUserProfileDocument();
+  if (!userSnapshot.exists) await createUserProfileDocument();
 
   // eslint-disable-next-line consistent-return
   return userRef;
