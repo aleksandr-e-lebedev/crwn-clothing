@@ -1,0 +1,38 @@
+{
+  "name": "crwn-clothing",
+  "version": "1.0.0",
+  "description": "Fullstack app created with React, Redux, Firebase, Node.js and Express",
+  "private": true,
+  "scripts": {
+    "install": "cd server && npm install && cd ../client && npm install",
+    "server": "cd server && npm run server",
+    "client": "cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "cd server && npm run start",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksandr-e-lebedev/crwn-clothing.git"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "Firebase",
+    "Node.js",
+    "Express"
+  ],
+  "author": "Aleksandr Lebedev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksandr-e-lebedev/crwn-clothing/issues"
+  },
+  "homepage": "https://github.com/aleksandr-e-lebedev/crwn-clothing#readme",
+  "devDependencies": {
+    "concurrently": "5.3.0"
+  },
+  "engines": {
+    "node": "12.14.1",
+    "npm": "6.13.4"
+  }
+}
